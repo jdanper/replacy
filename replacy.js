@@ -7,7 +7,7 @@ var path = require('path');
 var replace = require('replace');
 
 program
-  .version('1.0.0')
+  .version('0.0.1')
   .command('<expression> <replacement>')
   .parse(process.argv);
 

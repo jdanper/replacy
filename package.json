@@ -1,6 +1,6 @@
 {
-  "name": "renamr",
-  "version": "1.0.0",
+  "name": "replacy",
+  "version": "0.0.1",
   "description": "rename all files, folders and code",
   "main": "replacy.js",
   "scripts": {
