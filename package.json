@@ -1,0 +1,15 @@
+{
+  "name": "renamr",
+  "version": "1.0.0",
+  "description": "rename all files, folders and code",
+  "main": "replacy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "renamr"
+  },
+  "author": "Daniel Pereira (danieldsw2@gmail.com)",
+  "license": "MIT"
+}
