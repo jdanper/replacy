@@ -1,6 +1,6 @@
 {
   "name": "replacy",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Replaces recursively one expression with another in a directory, including file names and their contents.",
   "main": "replacy.js",
   "scripts": {
@@ -10,6 +10,12 @@
     "type": "git",
     "url": "renamr"
   },
+  "dependencies": {
+    "commander": "2.9.0"
+  },
   "author": "Daniel Pereira (danieldsw2@gmail.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "bin":{
+    "replacy":"./replacy.js"
+  }
 }
