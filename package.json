@@ -1,6 +1,6 @@
 {
   "name": "replacy",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Replaces recursively one expression with another in a directory, including file names and their contents.",
   "main": "replacy.js",
   "scripts": {
