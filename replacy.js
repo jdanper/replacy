@@ -7,26 +7,27 @@ var path = require('path');
 var replace = require('replace');
 
 program
-  .version('0.0.4')
-  .command('<expression> <replacement>')
+  .version('0.0.6')
+  .command('<path> <expression> <replacement>')
   .parse(process.argv);
 
 
 var replacement = ''
 var exp = '';
 
-if (process.argv.length >= 4) {
+if (process.argv.length >= 5) {
     exp = process.argv[2];
     replacement = process.argv[3];
+    var rootPath = process.argv[4];
 
-    console.log('Replacing ' + exp + ' with ' + replacement);
+    console.log('Replacing ' + exp + ' with ' + replacement + ' inside ' + rootPath);
     console.log('>> Directories <<');
-    rename(__dirname, false);
+    rename(rootPath, false);
 
     console.log('>> Files <<');
-    rename(__dirname, true);
+    rename(rootPath, true);
     console.log('>> Replacing inside files <<');
-    replaceInside(__dirname);
+    replaceInside(rootPath);
 } else {
     console.log('Must pass terms.');
     process.exit;
