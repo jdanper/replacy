@@ -7,20 +7,22 @@ var path = require('path');
 var replace = require('replace');
 
 program
-  .version('0.0.6')
-  .command('<path> <expression> <replacement>')
+  .version('0.0.8')
+  .command('<expression> <replacement>')
   .parse(process.argv);
 
 
 var replacement = ''
 var exp = '';
 
-if (process.argv.length >= 5) {
+if (process.argv.length >= 4) {
     exp = process.argv[2];
     replacement = process.argv[3];
-    var rootPath = process.argv[4];
+    var rootPath = process.cwd();
 
-    console.log('Replacing ' + exp + ' with ' + replacement + ' inside ' + rootPath);
+    console.log('Replacing ' + exp + ' with ' + replacement + '.');
+    console.log('Using ' + rootPath + ' as root.');
+
     console.log('>> Directories <<');
     rename(rootPath, false);
 
