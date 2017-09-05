@@ -1,14 +1,13 @@
 {
-  "name": "replacy",
+  "name": "replacy-cli",
   "version": "0.0.8",
   "description": "Replaces recursively one expression with another in a directory, including file names and their contents.",
-  "main": "replacy.js",
+  "main": "replacy-cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "renamr"
+    "type": "git"
   },
   "dependencies": {
     "commander": "^2.9.0",
@@ -17,6 +16,6 @@
   "author": "Daniel Pereira (danieldsw2@gmail.com)",
   "license": "MIT",
   "bin": {
-    "replacy": "./replacy.js"
+    "replacy": "./replacy-cli.js"
   }
 }
