@@ -11,64 +11,63 @@ program
     .command('<expression> <replacement>')
     .parse(process.argv);
 
-var replacement = ''
-var exp = '';
-
-var rename = function(dir, justFiles) {
+var rename = function (dir, justFiles, oldExp, newExp) {
     var flst = fs.readdirSync(dir);
 
     flst.forEach(file => {
         if (file.includes('.git') || file.includes('app.js')) return;
 
         var finalPath = path.join(dir, file);
-        var nfile = file.replace(exp, replacement);
+        var nfile = file.replace(oldExp, newExp);
         var endPoint = path.join(dir, nfile);
 
         if (fs.statSync(finalPath).isDirectory()) {
             rename(finalPath, justFiles);
             if (!justFiles)
-                if (file.includes(exp)) {
+                if (file.includes(oldExp)) {
                     console.log(finalPath + " -> " + nfile);
                     fs.renameSync(finalPath, endPoint);
                 }
-        } else if (justFiles && file.includes(exp)) {
+        } else if (justFiles && file.includes(oldExp)) {
             console.log(finalPath + " -> " + nfile);
             fs.renameSync(finalPath, endPoint);
         }
     });
 }
 
-var replaceContent = function(path) {
+var replaceContent = function (path, oldExp, newExp) {
     replace({
-        regex: exp,
-        replacement: replacement,
+        regex: oldExp,
+        replacement: newExp,
         paths: [path],
         recursive: true,
         silent: true,
     });
 }
 
-if (process.argv.length >= 4) {
-    exp = process.argv[2];
-    replacement = process.argv[3];
+var renameAndReplace = function (path, oldExp, newExp) {
     var rootPath = process.cwd();
-
-    console.log('Replacing ' + exp + ' with ' + replacement + '.');
+    console.log('Replacing ' + oldExp + ' with ' + newExp + '.');
     console.log('Using ' + rootPath + ' as root.');
 
     console.log('>> Directories <<');
-    rename(rootPath, false);
+    rename(rootPath, false, oldExp, newExp);
 
     console.log('>> Files <<');
-    rename(rootPath, true);
+    rename(rootPath, true, oldExp, newExp);
     console.log('>> Replacing inside files <<');
-    replaceContent(rootPath);
+    replaceContent(rootPath, oldExp, newExp);
+}
+
+if (process.argv.length >= 4) {
+    renameAndReplace(process.cwd(), process.argv[2], process.argv[3]);
 } else {
     console.log('Must pass terms.');
     process.exit;
 }
 
 module.exports = {
-    rename : rename,
-    replaceContent : replaceContent
+    rename: rename,
+    replaceContent: replaceContent,
+    renameAndReplace:renameAndReplace
 };
