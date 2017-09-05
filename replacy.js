@@ -63,7 +63,7 @@ if (process.argv.length >= 4) {
     renameAndReplace(process.cwd(), process.argv[2], process.argv[3]);
 } else {
     console.log('Must pass terms.');
-    process.exit;
+    process.exit;   
 }
 
 module.exports = {
