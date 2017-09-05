@@ -1,8 +1,8 @@
 {
-  "name": "replacy-cli",
-  "version": "0.0.8",
+  "name": "replacy",
+  "version": "0.1.0",
   "description": "Replaces recursively one expression with another in a directory, including file names and their contents.",
-  "main": "replacy-cli.js",
+  "main": "replacy.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,6 @@
   "author": "Daniel Pereira (danieldsw2@gmail.com)",
   "license": "MIT",
   "bin": {
-    "replacy": "./replacy-cli.js"
+    "replacy": "./replacy.js"
   }
 }
