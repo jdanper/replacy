@@ -7,7 +7,7 @@ var path = require('path');
 var replace = require('replace');
 
 program
-    .version('0.1.0')
+    .version('0.1.5')
     .command('<expression> <replacement>')
     .parse(process.argv);
 
@@ -15,7 +15,7 @@ var rename = function (dir, justFiles, oldExp, newExp) {
     var flst = fs.readdirSync(dir);
 
     flst.forEach(file => {
-        if (file.includes('.git') || file.includes('app.js')) return;
+        if (file.includes('.git')) continue;
 
         var finalPath = path.join(dir, file);
         var nfile = file.replace(oldExp, newExp);
@@ -53,7 +53,7 @@ var renameAndReplace = function (path, oldExp, newExp) {
     console.log('>> Directories <<');
     rename(rootPath, false, oldExp, newExp);
 
-    console.log('>> Files <<');
+    console.log('>> File names <<');
     rename(rootPath, true, oldExp, newExp);
     console.log('>> Replacing inside files <<');
     replaceContent(rootPath, oldExp, newExp);
