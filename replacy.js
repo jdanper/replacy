@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 'use strict';
 
 const program = require('commander');
@@ -7,7 +6,7 @@ var path = require('path');
 var replace = require('replace');
 
 program
-    .version('0.1.5')
+    .version('0.1.6')
     .command('<expression> <replacement>')
     .parse(process.argv);
 
@@ -15,14 +14,14 @@ var rename = function (dir, justFiles, oldExp, newExp) {
     var flst = fs.readdirSync(dir);
 
     flst.forEach(file => {
-        if (file.includes('.git')) continue;
+        if (file.includes('.git')) return;
 
         var finalPath = path.join(dir, file);
         var nfile = file.replace(oldExp, newExp);
         var endPoint = path.join(dir, nfile);
 
         if (fs.statSync(finalPath).isDirectory()) {
-            rename(finalPath, justFiles);
+            rename(finalPath, justFiles, oldExp, newExp);
             if (!justFiles)
                 if (file.includes(oldExp)) {
                     console.log(finalPath + " -> " + nfile);
